@@ -1,0 +1,435 @@
+<html>
+<head>
+	<!-- Latest compiled and minified CSS -->
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script><meta charset="utf-8">
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+	<script src="script.js"></script>
+	<link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body>
+	<div class="container-fluid">
+		<br>
+		<div class="alert alert-danger alert-dismissible text-center" role="alert">
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+			<strong>Внимание!</strong> Количество одного или более сортамента критически мало.
+		</div>
+
+		<ul id='tabMenu' class="nav nav-pills nav-justified">
+		  <li role="presentation" class="active"><a href="#">Количество материала</a></li>
+		  <li role="presentation"><a href="#">Заказ материала</a></li>
+		  <li role="presentation"><a href="#">Продажа станка</a></li>
+		  <li role="presentation"><a href="#">Изменение материала</a></li>
+		  <li role="presentation"><a href="#">Добавить станок</a></li>
+		  <li role="presentation"><a href="#">История продаж</a></li>	
+		</ul>
+
+		<div id="comp-avail" class="panel panel-default">		
+			<table class="table table-hover table-condensed table-responsive item-table">
+				<tr >
+					<td><b>Сортамент</b></td>
+					<td><b>Материал</b></td> 
+					<td><b>Количество</b></td> 
+					<td><b>Последнее изменение</b></td>			
+					<td><b>Изменение</b></td>				
+				</tr>
+				<tr class="danger">
+					<td>Труба 50х50х3</td>
+					<td>Сталь 20</td>
+					<td>12000 мм.</td>				
+					<td>22.01.2014</td>
+					<td>-2900 мм.</td>
+				</tr>	
+				<tr class="success">
+					<td>Труба 120х60х6</td>
+					<td>Сталь 20</td>
+					<td>13600 мм.</td>				
+					<td>22.01.2014</td>
+					<td>-2500 мм.</td>
+				</tr>				
+				<tr class="success">
+					<td>Труба 120х60х6</td>
+					<td>Сталь 45</td>
+					<td>6000 мм.</td>				
+					<td>22.01.2014</td>
+					<td>-3300 мм.</td>
+				</tr>		
+				<tr class="success">
+					<td>Круг  Ø20</td>
+					<td>Сталь 20</td>
+					<td>6700 мм.</td>				
+					<td>18.11.2014</td>
+					<td>-200 мм.</td>
+				</tr>	
+				<tr class="success">
+					<td>Шестигранник 17</td>
+					<td>Сталь 45</td>
+					<td>2000 мм.</td>				
+					<td>22.01.2014</td>
+					<td>-1100 мм.</td>
+				</tr>											
+			</table>
+			<br>
+			<button type="button" class="btn btn-success btn-md center-block">
+					<span class="glyphicon glyphicon-refresh" aria-hidden="true"> 
+					</span> Обновить
+			</button>	
+			<br>
+		</div>
+		<div id="item-change" class="panel panel-default">
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Выберите станок, для которого необходимо заказать материалы: </label>
+						<div class="col-md-4">
+							<select id="item-name" class="form-control">
+								<option>Вальц листогибочный</option>
+								<option>Зиговочная машина</option>
+								<option>Трубогиб</option>
+								<option>Фальцепрокатный станок</option>
+								<option>Станок для профнастила</option>
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Количество, шт: </label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Количество, шт">
+								<div class="input-group-addon">шт</div>
+							</div>
+						</div>
+					</div>	
+							
+					<br>					
+					<button type="submit" class="btn btn-success center-block"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Добавить</button>
+				</form>
+				<div class="col-xs-12 col-md-12">
+				<h3 class="text-center">Материалы для станков:</h3>
+				<div class="col-md-offset-5">
+					<ul>
+					  <li>Трубогиб x 2</li>
+					  <li>Фальцепрокатный станок</li>
+					  <li>Станок для профнастила</li>
+					</ul>
+				</div>
+				</div>
+				<form id="printMaterials" class="form-horizontal">
+					<div class="form-group col-md-12 col-xs-12">
+						<h3 class="text-center">Выбранные материалы:</h3>
+						<div class="row">
+						<div class="checkbox col-md-offset-3 col-md-2">
+						  <label>
+						    <input type="checkbox" value="" checked>
+						    Труба 120х60х6 : Сталь 20 (500 мм.)
+						  </label>
+						</div>				  
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Другое количество">
+						</div>
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Комментарий">
+						</div>
+					   </div>
+
+					   <div class="row">
+						<div class="checkbox col-md-offset-3 col-md-2">
+						  <label>
+						    <input type="checkbox" value="" checked>
+						    Труба 150х60х6 : Сталь 20 (2800 мм.)
+						  </label>
+						</div>				  
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Другое количество">
+						</div>
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Комментарий">
+						</div>
+						</div>
+						<div class="row">
+						<div class="checkbox col-md-offset-3 col-md-2">
+						  <label>
+						    <input type="checkbox" value="" checked>
+						    Шестигранник 24 : Сталь 45 (120 мм.)
+						  </label>
+						</div>				  
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Другое количество">
+						</div>
+						<div class="input-group col-md-2">
+							<input type="text" class="form-control" placeholder="Комментарий">
+						</div>
+						</div>
+										
+					</div>
+							
+					<br>					
+					<button type="submit" class="btn btn-info center-block"><span class="glyphicon glyphicon-print" aria-hidden="true"></span> Распечатать</button>
+					<i>Для очистки формы обновите страницу</i>
+				</form>
+			</div>
+		</div>
+		<div id="item-sell" class="panel panel-default">
+
+		<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="row col-md-12">
+						<div class="col-md-5"></div>
+						<div id='img-wrapper' class="col-md-4">
+							<img src="stanok.jpg" class="img-responsive img-rounded"><br>
+						</div>
+					</div>
+					<div class="form-group">
+						<label for="item-name" class="col-md-5 control-label text-right">Выберите станок: </label>
+						<div class="col-md-4">
+							<select id="item-name" class="form-control">
+								<option>Вальц листогибочный</option>
+								<option>Зиговочная машина</option>
+								<option>Трубогиб</option>
+								<option>Фальцепрокатный станок</option>
+								<option>Станок для профнастила</option>
+							</select>
+						</div>
+					</div>
+					<div class="row col-md-12">
+						
+						<div class="col-md-offset-5 col-md-4 text-right">
+							<div class="warn-block">
+								<span><b>-158 <small>х</small> Болты</b></span> <br>
+								<span><b>-144 <small>х</small> Шайба</b></span><br>
+								<span><b>-158 <small>х</small> Гайка</b></span><br>
+								<span><b>-102 <small>х</small> Молоток</b></span><br>
+							</div>
+						</div>
+					</div>
+					
+					<div class="form-group">
+						<label for="item-name" class="col-md-5 control-label text-right">Количество: </label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Количество: ">
+								<div class="input-group-addon">шт</div>
+							</div>
+						</div>
+					</div>	
+					<div class="row">
+						<div class="col-xs-6 text-right">
+					<button type="button" class="btn btn-success btn-md">
+						<span class="glyphicon glyphicon-ok-sign" aria-hidden="true"></span> Продать
+					</button>
+							</div>
+							<div class="col-xs-5 text-left">
+					<button type="button" class="btn btn-info btn-md">
+						<span class="glyphicon glyphicon-print" aria-hidden="true"></span> Создать заявку
+					</button>
+					</div>
+				</div>
+				
+				</form>
+			</div>
+		</div>
+
+		<div id="item-change" class="panel panel-default">
+			<div class="panel-body">
+				<form name="changeMaterial" class="form-horizontal">
+					<h3 class="text-center">Изменение текущего сортамента</h3>
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Выберите сортамент: </label>
+						<div class="col-md-4">
+							<select id="item-name" class="form-control">
+								<option>Труба 150х100х6</option>
+								<option>Труба 120х60х6</option>
+								<option>Круг Ø65</option>
+								<option>Круг Ø32</option>
+							</select>
+						</div>
+					</div>					
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Выберите вид материала: </label>
+						<div class="col-md-4">
+							<select id="item-name" class="form-control">
+								<option>Сталь 20</option>
+								<option>Сталь 40Х</option>
+								<option>Бронза БрАЖ10</option>
+							</select>
+						</div>
+					</div>
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Изменить на шт: </label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="Изменяется с помощью +/-">
+								<div class="input-group-addon">шт</div><input class="form-control text-center" id="disabledInput" type="text" placeholder="Сейчас: 3245" disabled>
+							</div>
+						</div>
+					</div>		
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Изменить критическое количество: </label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input type="text" class="form-control" placeholder="">
+								<div class="input-group-addon">шт</div>
+								<input class="form-control text-center" id="disabledInput" type="text" placeholder="Сейчас: 1230" disabled>
+							</div>
+						</div>
+						<p class="row col-md-offset-5 col-md-4 italic"><i>Оставьте поле пустым, если не хотите менять свойство</i></p>
+					</div>									
+					<br>					
+					<button type="submit" class="btn btn-primary center-block"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span> Изменить</button>
+				</form>
+
+				<form name="newMaterial" class="form-horizontal">
+					<div class="form-group col-md-12 col-xs-12">
+						<h3 class="text-center">Добавление нового сортамента</h3>
+						<label for="item-name" class="col-md-5 control-label text-right">Введите название нового сортамента: </label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" placeholder="Название сортамента">
+						</div>
+					</div>
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="materialPicker" class="col-md-5 control-label text-right">Выберите вид материала: </label>
+						<div class="col-md-4">
+							<select id="materialPicker" class="form-control">
+								<option>Сталь 20</option>
+								<option>Сталь 40Х</option>
+								<option>Бронза БрАЖ10</option>
+							</select>
+						</div>
+					</div>	
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="newMaterialInput" class="col-md-5 control-label text-right">Либо введите новый вид материала: </label>
+						<div class="col-md-4">
+							<div class="input">
+								<input id="newMaterialInput" type="text" class="form-control" placeholder="">
+							</div>
+						</div>
+					</div>										
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Количество: </label>
+						<div class="col-md-3">
+								<input type="text" class="form-control" placeholder="Количество">
+						</div>
+						<div class="col-md-1">
+							<select id="changeType" class="form-control">
+								<option>шт.</option>
+								<option>м.</option>
+							</select>
+						</div>						
+					</div>		
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Критическое количество сортамента данного материала: </label>
+						<div class="col-md-4">
+							<div class="input">
+								<input type="text" class="form-control" placeholder="">
+							</div>
+						</div>
+					</div>									
+					<br>					
+					<button type="submit" class="btn btn-success center-block"><span class="glyphicon glyphicon-upload" aria-hidden="true"></span> Добавить</button>
+				</form>
+			</div>
+		</div>
+
+		<div id="add-machine" class="panel panel-default">
+
+			<div class="panel-body">
+				<form class="form-horizontal">
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Введите название станка: </label>
+						<div class="col-md-4">
+							<input type="text" class="form-control" placeholder="Название станка">
+						</div>
+					</div>
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Выберите изображение станка: </label>
+						<div class="col-md-4">
+							<input type="file" id="imgFile">
+						</div>
+					</div>
+					<div class="row">
+						<div class="col-md-offset-5 col-md-4">
+							<img id="imagePreview" src="" class="img-responsive img-rounded"><br>
+						</div>
+					</div>
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="sortPicker" class="col-md-5 control-label text-right">Выберите сортамент: </label>
+						<div class="col-md-3">
+								<select id="sortPicker" class="form-control">
+									  <option>Полоса 20(25)х60</option>
+									  <option>Квадрат 25х25</option>
+									  <option>Квадрат 40х40</option>
+									  <option>Шестигранник 14</option>
+									  <option>Труба ø33,5х4(Ду25)</option>
+									  <option>Труба ø26,8х3,2(Ду20)</option>
+									</select>
+						</div>
+					</div>
+					<div 	class="form-group col-md-12 col-xs-12">
+						<label for="addMaterialPicker" class="col-md-5 control-label text-right">Выберите материал: </label>
+						<div class="col-md-3">
+								<select id="addMaterialPicker" class="form-control">
+									  <option>Сталь 20</option>
+									  <option>Сталь 40</option>
+									  <option>Сталь 65</option>
+									  <option>Ст3</option>
+									  <option>Бронза БрАЖ10</option>
+									</select>
+						</div>
+						<div class="col-md-1">
+												<button id="materialToList" type="submit" class="btn btn-success center-block"><span class="glyphicon glyphicon-plus" aria-hidden="true"></span> </button>
+
+						</div>
+					</div>		
+					<div class="form-group col-md-12 col-xs-12">
+						<label for="item-name" class="col-md-5 control-label text-right">Введите количество материала: </label>
+						<div class="col-md-4">
+							<div class="input-group">
+								<input id="quantity" type="text" class="form-control" placeholder="">
+								<div id="measure" class="input-group-addon">мм.</div>
+								<input class="form-control text-center" id="disabledInput" type="text" placeholder="Сейчас: 1230" disabled>
+							</div>
+						</div>
+						</div>									
+					<br>
+					<div class="form-group col-md-12 col-xs-12">
+						<div class="col-md-offset-5 col-md-4 material-container">
+
+						</div>
+					</div>
+					<button id="addDevice" type="submit" class="btn btn-primary center-block"><span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Добавить</button>
+				</form>
+
+			</div>
+		</div>
+
+		<div class="panel panel-default">		
+
+			<table id="orderHistory" class="table table-hover table-condensed table-responsive item-table">
+				<tr >
+					<td><b>Станок</b></td>
+					<td><b>Количество</b></td> 
+					<!-- стоимость? -->
+					<td><b>Дата продажи</b></td>							
+				</tr>
+				<tr class="success">
+					<td>Вальц листогибочный</td>
+					<td>1</td>
+					<td>02.07.2014</td>				
+				</tr>	
+				<tr class="success">
+					<td>Трубогиб</td>
+					<td>1</td>
+					<td>05.12.2014</td>	
+				</tr>				
+				<tr class="success">
+					<td>Трубогиб</td>
+					<td>1</td>
+					<td>12.08.2014</td>	
+				</tr>				
+			</table>
+		</div>		
+	</div>
+</div>
+</body>	
+</html>
